@@ -47,8 +47,9 @@ func (ll *SLinkedList) AddFront(data int) *Node {
 //AddEnd adding at the front of linkelist
 func (ll *SLinkedList) AddEnd(data int) *Node {
 	node := &Node{data: data}
-	node.next = nil
+	ll.tail.next = node
 	ll.tail = node
+	ll.size = ll.size + 1
 	return node
 }
 
@@ -64,11 +65,12 @@ func (ll *SLinkedList) AddAt(data int, at int) *Node {
 			node.next = tn
 		}
 	}
+	ll.size = ll.size + 1
 	return node
 }
 
-//IteratePrint prints the linkedlist
-func (ll *SLinkedList) IteratePrint() {
+//Iterate prints the linkedlist
+func (ll *SLinkedList) Iterate() {
 	var node *Node
 	for node = ll.head; node != nil; node = node.next {
 		log.Println(node.data)
