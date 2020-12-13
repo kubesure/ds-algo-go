@@ -1,6 +1,8 @@
 package linkedlist
 
 import (
+	"fmt"
+	"log"
 	"testing"
 )
 
@@ -26,7 +28,9 @@ func TestAddFront(t *testing.T) {
 		t.Errorf("got %v and wanted 3", sll.size)
 	}
 
-	sll.Iterate()
+	for _, v := range sll.Nodes() {
+		log.Println(v.data)
+	}
 
 }
 
@@ -45,7 +49,7 @@ func TestAddEnd(t *testing.T) {
 		t.Errorf("got %v and wanted 3", sll.size)
 	}
 
-	sll.Iterate()
+	sll.Iterate(func(n *Node) { fmt.Println(n.data) })
 }
 
 func TestAddAt(t *testing.T) {
@@ -68,5 +72,5 @@ func TestAddAt(t *testing.T) {
 		t.Errorf("got %v and wanted 4", sll.size)
 	}
 
-	sll.Iterate()
+	sll.Iterate(func(n *Node) { fmt.Println(n.data) })
 }

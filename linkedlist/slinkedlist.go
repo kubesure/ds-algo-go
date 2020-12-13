@@ -1,7 +1,5 @@
 package linkedlist
 
-import "log"
-
 //Node of a linkedlist
 type Node struct {
 	data int
@@ -69,10 +67,20 @@ func (ll *SLinkedList) AddAt(data int, at int) *Node {
 	return node
 }
 
-//Iterate prints the linkedlist
-func (ll *SLinkedList) Iterate() {
+//Nodes returns all nodes of the linkedlist
+func (ll *SLinkedList) Nodes() []*Node {
+	var node *Node
+	var nodes []*Node
+	for node = ll.head; node != nil; node = node.next {
+		nodes = append(nodes, node)
+	}
+	return nodes
+}
+
+//Iterate iterates and call func pass as parameter
+func (ll *SLinkedList) Iterate(f func(n *Node)) {
 	var node *Node
 	for node = ll.head; node != nil; node = node.next {
-		log.Println(node.data)
+		f(node)
 	}
 }
