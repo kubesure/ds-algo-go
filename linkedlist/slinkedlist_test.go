@@ -1,76 +1,65 @@
 package linkedlist
 
 import (
-	"fmt"
-	"log"
 	"testing"
 )
 
 func TestNewSingleListList(t *testing.T) {
 	sll := NewSingleLinkedList(1)
-	if sll.size != 1 {
-		t.Errorf("got %v and wanted 1", sll.size)
+	if sll.Size() != 1 {
+		t.Errorf("got %v and wanted 1", sll.Size())
 	}
 }
 
 func TestAddFront(t *testing.T) {
 	sll := NewSingleLinkedList(1)
-	if sll.size != 1 {
-		t.Errorf("got %v and wanted 1", sll.size)
+	if sll.Size() != 1 {
+		t.Errorf("got %v and wanted 1", sll.Size())
 	}
 	sll.AddFront(2)
 	if sll.size != 2 {
-		t.Errorf("got %v and wanted 2", sll.size)
+		t.Errorf("got %v and wanted 2", sll.Size())
 	}
 
 	sll.AddFront(3)
 	if sll.size != 3 {
-		t.Errorf("got %v and wanted 3", sll.size)
+		t.Errorf("got %v and wanted 3", sll.Size())
 	}
-
-	for _, v := range sll.Nodes() {
-		log.Println(v.data)
-	}
-
 }
 
 func TestAddEnd(t *testing.T) {
 	sll := NewSingleLinkedList(1)
-	if sll.size != 1 {
-		t.Errorf("got %v and wanted 1", sll.size)
+	if sll.Size() != 1 {
+		t.Errorf("got %v and wanted 1", sll.Size())
 	}
 	sll.AddEnd(3)
-	if sll.size != 2 {
-		t.Errorf("got %v and wanted 2", sll.size)
+	if sll.Size() != 2 {
+		t.Errorf("got %v and wanted 2", sll.Size())
 	}
 
 	sll.AddEnd(2)
 	if sll.size != 3 {
-		t.Errorf("got %v and wanted 3", sll.size)
+		t.Errorf("got %v and wanted 3", sll.Size())
 	}
-
-	sll.Iterate(func(n *Node) { fmt.Println(n.data) })
 }
 
 func TestAddAt(t *testing.T) {
 	sll := NewSingleLinkedList(1)
-	if sll.size != 1 {
-		t.Errorf("got %v and wanted 1", sll.size)
+	if sll.Size() != 1 {
+		t.Errorf("got %v and wanted 1", sll.Size())
 	}
 	sll.AddEnd(2)
 	if sll.size != 2 {
-		t.Errorf("got %v and wanted 2", sll.size)
+		t.Errorf("got %v and wanted 2", sll.Size())
 	}
 
 	sll.AddEnd(3)
-	if sll.size != 3 {
-		t.Errorf("got %v and wanted 3", sll.size)
+	if sll.Size() != 3 {
+		t.Errorf("got %v and wanted 3", sll.Size())
 	}
 
 	sll.AddAt(4, 2)
 	if sll.size != 4 {
 		t.Errorf("got %v and wanted 4", sll.size)
 	}
-
-	sll.Iterate(func(n *Node) { fmt.Println(n.data) })
 }
