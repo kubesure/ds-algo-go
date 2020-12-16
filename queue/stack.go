@@ -15,7 +15,7 @@ type Element struct {
 	value int
 }
 
-//New create a stack
+//NewStack create a stack
 func NewStack(size int) *Stack {
 	e := make([]Element, size)
 	s := new(Stack)
@@ -35,7 +35,7 @@ func (s *Stack) Push(value int) *Element {
 	return &e
 }
 
-//Pop the top element
+//Pop pops the top element
 func (s *Stack) Pop() *Element {
 	if s.size <= 0 {
 		return nil
@@ -48,9 +48,25 @@ func (s *Stack) Pop() *Element {
 	return &e
 }
 
+//Peek returns top to stack element
+func (s *Stack) Peek() *Element {
+	if s.size <= 0 {
+		return nil
+	}
+
+	l := s.size
+	e := s.elements[l-1]
+	return &e
+}
+
 //Size return size of stack
 func (s *Stack) Size() int {
 	return s.size
+}
+
+//IsEmpty return size of stack
+func (s *Stack) IsEmpty() bool {
+	return s.size == 0
 }
 
 // Print method on Element class

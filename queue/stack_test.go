@@ -40,3 +40,31 @@ func TestPop(t *testing.T) {
 		t.Errorf("got %v and wanted nil", s.Size())
 	}
 }
+
+func TestPeek(t *testing.T) {
+	s := NewStack(1)
+	s.Push(1)
+	s.Push(2)
+
+	e := s.Peek()
+
+	if e.value != 2 {
+		t.Errorf("got %v and wanted 2", s.Size())
+	}
+
+	if s.size != 2 {
+		t.Errorf("got %v and wanted 2", s.Size())
+	}
+}
+
+func TestIsEmpty(t *testing.T) {
+	s := NewStack(1)
+	s.Push(1)
+	s.Pop()
+
+	empty := s.IsEmpty()
+
+	if !empty {
+		t.Errorf("got %v and wanted 0", s.Size())
+	}
+}

@@ -34,7 +34,7 @@ func (dll *DBLinkedList) AddFront(data int) *Node {
 }
 
 //AddEnd adds element to the end the linkedlist
-func (dll DBLinkedList) AddEnd(data int) (*Node, error) {
+func (dll *DBLinkedList) AddEnd(data int) (*Node, error) {
 	if dll.head == nil {
 		return nil, fmt.Errorf("head not set add to head")
 	}
@@ -42,6 +42,7 @@ func (dll DBLinkedList) AddEnd(data int) (*Node, error) {
 	node.prev = dll.tail
 	dll.tail.next = node
 	dll.tail = node
+	dll.size = dll.size + 1
 	return node, nil
 }
 

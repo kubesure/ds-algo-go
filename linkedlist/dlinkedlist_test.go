@@ -31,13 +31,13 @@ func TestAddEndDL(t *testing.T) {
 		t.Error(err)
 	}
 
-	if dll.Size() != 1 {
+	if dll.Size() != 2 {
 		t.Errorf("got %v and wanted 2", dll.Size())
 	}
 
 	dll.AddEnd(2)
 
-	if dll.Size() != 2 {
+	if dll.Size() != 3 {
 		t.Errorf("got %v and wanted 3", dll.Size())
 	}
 
