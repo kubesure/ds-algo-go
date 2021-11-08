@@ -7,13 +7,13 @@ import (
 func TestAddFrontDL(t *testing.T) {
 	d := new(DBLinkedList)
 	d.AddFront(1)
-	if d.size != 1 {
+	if d.Size() != 1 {
 		t.Errorf("got %v and wanted 1", d.Size())
 	}
 
 	d.AddFront(2)
 	if d.Size() != 2 {
-		t.Errorf("got %v and wanted 3", d.Size())
+		t.Errorf("got %v and wanted 2", d.Size())
 	}
 
 	d.AddFront(3)
@@ -47,7 +47,7 @@ func TestAddAtDL(t *testing.T) {
 	dll := NewDBLinkedList(1)
 
 	dll.AddFront(2)
-	if dll.size != 2 {
+	if dll.Size() != 2 {
 		t.Errorf("got %v and wanted 2", dll.Size())
 	}
 

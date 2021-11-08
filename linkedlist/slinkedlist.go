@@ -1,5 +1,7 @@
 package linkedlist
 
+import "fmt"
+
 //SLinkedList implement a single linkedlist
 type SLinkedList struct {
 	head *Node
@@ -82,4 +84,22 @@ func (sll *SLinkedList) Nodes() []*Node {
 		nodes = append(nodes, node)
 	}
 	return nodes
+}
+
+func (sll *SLinkedList) Print() {
+	currNode := sll.head
+	if currNode == nil {
+		fmt.Println("empty list")
+	} else {
+		fmt.Print("[")
+		for i := 0; i < sll.size; i++ {
+			if i == sll.size-1 {
+				fmt.Printf("%v", currNode.data)
+			} else {
+				fmt.Printf("%v,", currNode.data)
+			}
+			currNode = currNode.next
+		}
+		fmt.Printf("]")
+	}
 }

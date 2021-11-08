@@ -63,3 +63,11 @@ func TestAddAt(t *testing.T) {
 		t.Errorf("got %v and wanted 4", sll.size)
 	}
 }
+
+func TestPrint(t *testing.T) {
+	sll := NewSingleLinkedList(0)
+	sll.AddFront(1)
+	sll.AddFront(2)
+	sll.AddFront(3)
+	sll.Print()
+}
