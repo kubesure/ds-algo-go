@@ -7,18 +7,18 @@ import (
 func TestAddFrontDL(t *testing.T) {
 	d := new(DBLinkedList)
 	d.AddFront(1)
-	if d.Size() != 1 {
-		t.Errorf("got %v and wanted 1", d.Size())
+	if d.Length() != 1 {
+		t.Errorf("got %v and wanted 1", d.Length())
 	}
 
 	d.AddFront(2)
-	if d.Size() != 2 {
-		t.Errorf("got %v and wanted 2", d.Size())
+	if d.Length() != 2 {
+		t.Errorf("got %v and wanted 2", d.Length())
 	}
 
 	d.AddFront(3)
-	if d.Size() != 3 {
-		t.Errorf("got %v and wanted 3", d.Size())
+	if d.Length() != 3 {
+		t.Errorf("got %v and wanted 3", d.Length())
 	}
 }
 
@@ -31,14 +31,14 @@ func TestAddEndDL(t *testing.T) {
 		t.Error(err)
 	}
 
-	if dll.Size() != 2 {
-		t.Errorf("got %v and wanted 2", dll.Size())
+	if dll.Length() != 2 {
+		t.Errorf("got %v and wanted 2", dll.Length())
 	}
 
 	dll.AddEnd(2)
 
-	if dll.Size() != 3 {
-		t.Errorf("got %v and wanted 3", dll.Size())
+	if dll.Length() != 3 {
+		t.Errorf("got %v and wanted 3", dll.Length())
 	}
 
 }
@@ -47,17 +47,17 @@ func TestAddAtDL(t *testing.T) {
 	dll := NewDBLinkedList(1)
 
 	dll.AddFront(2)
-	if dll.Size() != 2 {
-		t.Errorf("got %v and wanted 2", dll.Size())
+	if dll.Length() != 2 {
+		t.Errorf("got %v and wanted 2", dll.Length())
 	}
 
 	dll.AddFront(3)
-	if dll.Size() != 3 {
-		t.Errorf("got %v and wanted 3", dll.Size())
+	if dll.Length() != 3 {
+		t.Errorf("got %v and wanted 3", dll.Length())
 	}
 
 	dll.AddAt(4, 1)
-	if dll.Size() != 4 {
-		t.Errorf("got %v and wanted 4", dll.Size())
+	if dll.Length() != 4 {
+		t.Errorf("got %v and wanted 4", dll.Length())
 	}
 }

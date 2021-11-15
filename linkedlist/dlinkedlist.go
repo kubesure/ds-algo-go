@@ -4,60 +4,60 @@ import "fmt"
 
 //DBLinkedList implement a single linkedlist
 type DBLinkedList struct {
-	head *Node
-	tail *Node
+	Head *Node
+	Tail *Node
 	size int
 }
 
 //NewDBLinkedList create new double linkedlist
-func NewDBLinkedList(data int) *DBLinkedList {
+func NewDBLinkedList(Data int) *DBLinkedList {
 	var dl = &DBLinkedList{}
-	dl.AddFront(data)
+	dl.AddFront(Data)
 	return dl
 }
 
 //AddFront adds element to front of the linkedlist
-func (dll *DBLinkedList) AddFront(data int) *Node {
-	node := &Node{data: data}
-	if dll.head == nil {
-		dll.head = node
-		dll.tail = node
+func (dll *DBLinkedList) AddFront(Data int) *Node {
+	node := &Node{Data: Data}
+	if dll.Head == nil {
+		dll.Head = node
+		dll.Tail = node
 		dll.size = 1
 	} else {
-		node.next = dll.head
-		dll.head.prev = node
-		node.prev = nil
-		dll.head = node
+		node.Next = dll.Head
+		dll.Head.Prev = node
+		node.Prev = nil
+		dll.Head = node
 		dll.size = dll.size + 1
 	}
 	return node
 }
 
 //AddEnd adds element to the end the linkedlist
-func (dll *DBLinkedList) AddEnd(data int) (*Node, error) {
-	if dll.head == nil {
+func (dll *DBLinkedList) AddEnd(Data int) (*Node, error) {
+	if dll.Head == nil {
 		return nil, fmt.Errorf("head not set add to head")
 	}
-	var node = &Node{data: data}
-	node.prev = dll.tail
-	dll.tail.next = node
-	dll.tail = node
+	var node = &Node{Data: Data}
+	node.Prev = dll.Tail
+	dll.Tail.Next = node
+	dll.Tail = node
 	dll.size = dll.size + 1
 	return node, nil
 }
 
 //AddAt add element to front of linkedlist
-func (dll *DBLinkedList) AddAt(data int, at int) *Node {
-	tn := &Node{data: data}
+func (dll *DBLinkedList) AddAt(Data int, at int) *Node {
+	tn := &Node{Data: Data}
 	var index int = 0
 	var atNode *Node
-	for atNode = dll.head; atNode != nil; atNode = atNode.next {
+	for atNode = dll.Head; atNode != nil; atNode = atNode.Next {
 		index++
 		if index == at {
-			tn.prev = atNode
-			tn.next = atNode.next
-			atNode.next.prev = tn
-			atNode.next = tn
+			tn.Prev = atNode
+			tn.Next = atNode.Next
+			atNode.Next.Prev = tn
+			atNode.Next = tn
 		}
 	}
 	dll.size = dll.size + 1
@@ -67,7 +67,7 @@ func (dll *DBLinkedList) AddAt(data int, at int) *Node {
 //IterateReverse reverse iteration of linked list
 func (dll *DBLinkedList) IterateReverse(f func(n *Node)) {
 	var node *Node
-	for node = dll.tail; node != nil; node = node.prev {
+	for node = dll.Tail; node != nil; node = node.Prev {
 		f(node)
 	}
 }
@@ -75,13 +75,13 @@ func (dll *DBLinkedList) IterateReverse(f func(n *Node)) {
 //IterateForward reverse iteration of linked list
 func (dll *DBLinkedList) IterateForward(f func(n *Node)) {
 	var node *Node
-	for node = dll.head; node != nil; node = node.next {
+	for node = dll.Head; node != nil; node = node.Next {
 		f(node)
 	}
 }
 
 //Size return size of double linked list
-func (dll *DBLinkedList) Size() int {
+func (dll *DBLinkedList) Length() int {
 	return dll.size
 }
 
@@ -89,7 +89,7 @@ func (dll *DBLinkedList) Size() int {
 func (dll *DBLinkedList) Nodes() []*Node {
 	var node *Node
 	var nodes []*Node
-	for node = dll.head; node != nil; node = node.next {
+	for node = dll.Head; node != nil; node = node.Next {
 		nodes = append(nodes, node)
 	}
 	return nodes
@@ -97,7 +97,7 @@ func (dll *DBLinkedList) Nodes() []*Node {
 
 //Delete deletes the linkedlist
 func (dll *DBLinkedList) Delete() {
-	dll.head.next = nil
-	dll.tail = nil
+	dll.Head.Next = nil
+	dll.Tail = nil
 	dll.size = 0
 }
