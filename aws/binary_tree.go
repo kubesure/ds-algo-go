@@ -10,6 +10,7 @@ import (
 func isBST(root *tree.Tree, min int, max int, side string) bool {
 	if root == nil || root.Value == 0 {
 		return true
+
 	}
 
 	fmt.Printf("side %v value %v - min - %v max %v \n ", side, root.Value, min, max)
