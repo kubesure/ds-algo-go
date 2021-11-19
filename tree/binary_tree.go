@@ -1,4 +1,4 @@
-package aws
+package tree
 
 import (
 	"container/list"

@@ -1,4 +1,4 @@
-package aws
+package numbers
 
 import (
 	"math/rand"

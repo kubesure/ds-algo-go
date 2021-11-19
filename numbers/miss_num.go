@@ -1,4 +1,4 @@
-package aws
+package numbers
 
 func findMissingNum(input []int) int {
 	var sumInput int

@@ -1,29 +1,4 @@
-package aws
-
-/*func segmentStr(str string, dict []string) []string {
-	wordsFound := make([]string, 0)
-	d := make(map[string]struct{}, len(dict))
-
-	for _, v := range dict {
-		d[v] = struct{}{}
-	}
-
-	for i := 0; i <= len(str); i++ {
-		fristWord := str[0:i]
-		if _, ok := d[fristWord]; ok {
-			wordsFound = append(wordsFound, fristWord)
-			secondWord := str[i:]
-			_, ok := d[secondWord]
-			if ok {
-				wordsFound = append(wordsFound, secondWord)
-				return wordsFound
-			} else {
-				segmentStr(secondWord, dict)
-			}
-		}
-	}
-	return wordsFound
-}*/
+package strings
 
 func canSegmentStr(str string, dict map[string]struct{}) bool {
 	for i := 1; i <= len(str); i++ {
