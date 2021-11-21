@@ -5,7 +5,7 @@ import (
 )
 
 func TestPush(t *testing.T) {
-	s := NewStack(1)
+	s := NewStack()
 	s.Push(1)
 	s.Push(2)
 
@@ -21,7 +21,7 @@ func TestPush(t *testing.T) {
 }
 
 func TestPop(t *testing.T) {
-	s := NewStack(1)
+	s := NewStack()
 	s.Push(1)
 
 	if s.Size() != 1 {
@@ -42,17 +42,16 @@ func TestPop(t *testing.T) {
 }
 
 func TestPop2(t *testing.T) {
-	s := NewStack(1)
-	s.Push(3)
-	s.Push(2)
+	s := NewStack()
 	s.Push(1)
-	s.Pop()
+	s.Push(2)
+	s.Push(3)
 	s.Pop()
 	s.Print()
 }
 
 func TestPeek(t *testing.T) {
-	s := NewStack(1)
+	s := NewStack()
 	s.Push(1)
 	s.Push(2)
 
@@ -68,7 +67,7 @@ func TestPeek(t *testing.T) {
 }
 
 func TestIsEmpty(t *testing.T) {
-	s := NewStack(1)
+	s := NewStack()
 	s.Push(1)
 	s.Pop()
 

@@ -5,8 +5,15 @@ import (
 )
 
 //NewStack create a stack
-func NewStack(size int) *Stack {
+/*func NewStack(size int) *Stack {
 	e := make([]Element, size)
+	s := new(Stack)
+	s.elements = e
+	return s
+}*/
+
+func NewStack() *Stack {
+	e := make([]Element, 0)
 	s := new(Stack)
 	s.elements = e
 	return s
@@ -14,12 +21,13 @@ func NewStack(size int) *Stack {
 
 //Push pushes value on top of stack
 func (s *Stack) Push(value int) *Element {
-	if s.size == cap(s.elements) {
+	/*if s.size == cap(s.elements) {
 		els := make([]Element, 10)
 		s.elements = append(s.elements, els...)
-	}
+	}*/
 	e := Element{value: value}
-	s.elements = append(s.elements[:s.size], e)
+	//a := s.elements[:s.size]
+	s.elements = append(s.elements, e)
 	s.size++
 	return &e
 }
@@ -30,8 +38,8 @@ func (s *Stack) Pop() *Element {
 		return nil
 	}
 
-	e := s.elements[0]
-	s.elements = s.elements[1:]
+	e := s.elements[s.size-1]
+	s.elements = s.elements[:s.size-1]
 	s.size--
 	return &e
 }
@@ -60,6 +68,6 @@ func (s *Stack) IsEmpty() bool {
 // Print method on Element class
 func (s *Stack) Print() {
 	for _, v := range s.elements {
-		fmt.Println(v.value)
+		fmt.Printf(" %v ", v.value)
 	}
 }
