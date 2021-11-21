@@ -2,20 +2,22 @@ package queue
 
 import "fmt"
 
-func NewQueue(size int) *Queue {
+/*func NewQueue(size int) *Queue {
 	e := make([]Element, size)
 	q := new(Queue)
 	q.elements = e
 	return q
+}*/
+
+func NewQueue() *Queue {
+	q := new(Queue)
+	return q
 }
 
 func (q *Queue) EnQueue(value int) *Element {
-	if q.size == cap(q.elements) {
-		els := make([]Element, 10)
-		q.elements = append(q.elements, els...)
-	}
+
 	e := Element{value: value}
-	q.elements = append(q.elements[:q.size], e)
+	q.elements = append(q.elements, e)
 	q.size++
 	return &e
 }
