@@ -30,9 +30,8 @@ func (s *Stack) Pop() *Element {
 		return nil
 	}
 
-	l := s.size
-	e := s.elements[l-1]
-	s.elements = s.elements[:l-1]
+	e := s.elements[0]
+	s.elements = s.elements[1:]
 	s.size--
 	return &e
 }

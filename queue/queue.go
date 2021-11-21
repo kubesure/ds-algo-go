@@ -25,7 +25,7 @@ func (q *Queue) DeQueue() *Element {
 		return nil
 	}
 	e := q.elements[q.size-1]
-	q.elements = q.elements[q.size-1:]
+	q.elements = q.elements[:q.size-1]
 	q.size--
 	return &e
 }
