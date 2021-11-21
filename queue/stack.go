@@ -4,17 +4,6 @@ import (
 	"fmt"
 )
 
-//Stack represent a stack
-type Stack struct {
-	elements []Element
-	size     int
-}
-
-//Element is a value in the stack
-type Element struct {
-	value int
-}
-
 //NewStack create a stack
 func NewStack(size int) *Stack {
 	e := make([]Element, size)
