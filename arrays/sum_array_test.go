@@ -1,11 +1,11 @@
-package aws
+package arrays
 
 import (
 	"testing"
 )
 
 func TestSumOfVals(t *testing.T) {
-	vals := [7]int{6, 7, 4, 2, 8, 4, 3}
+	vals := []int{6, 7, 4, 2, 8, 4, 3}
 	if find_sum_of_val(vals, 10) != true {
 		t.Errorf("should have found true for val %v", 10)
 	}
