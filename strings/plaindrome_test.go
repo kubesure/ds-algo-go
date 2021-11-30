@@ -9,7 +9,19 @@ func TestIsPlaindromePrem(t *testing.T) {
 }
 
 func TestIsPlaindromePrem2(t *testing.T) {
-	if !isPlaindromePrem2("tactcozapapa") {
+	if !isPlaindromePrem2("tactcoapapa") {
+		t.Errorf("should be a plaindrome permunation")
+	}
+}
+
+func TestIsNotPlaindromePrem(t *testing.T) {
+	if isPlaindromePrem("tactcozapapa") {
+		t.Errorf("should be a plaindrome permunation")
+	}
+}
+
+func TestIsNotPlaindromePrem2(t *testing.T) {
+	if isPlaindromePrem2("tactcozapapa") {
 		t.Errorf("should be a plaindrome permunation")
 	}
 }
