@@ -14,16 +14,16 @@ func rotate90(cube [][]int) ([][]int, error) {
 	printCube(cube)
 
 	for i := 0; i < cubeSize/2; i++ {
-		for j := i; j < cubeSize-1; j++ {
-			temp := cube[i][j]
-			cube[i][j] = cube[cubeSize-1-j][i] // 7 > 1 // 4 > 2
-			//printCube(cube)
-			cube[cubeSize-1-j][i] = cube[cubeSize-1][cubeSize-1-j] // 9 > 7 // 8 > 4
-			//printCube(cube)
-			cube[cubeSize-1][cubeSize-1-j] = cube[j-i][cubeSize-1] // 3 > 9 // 6 > 8
-			//printCube(cube)
-			cube[j-i][cubeSize-1] = temp // 1 > 3 // 8 > 4
-			//printCube(cube)
+		for j := i; j < cubeSize-i-1; j++ {
+			temp := cube[i][j]                 // 1
+			cube[i][j] = cube[cubeSize-1-j][i] // 7 replaces 1
+			printCube(cube)
+			cube[cubeSize-1-j][i] = cube[cubeSize-1-i][cubeSize-1-j] // 9 replaces 7
+			printCube(cube)
+			cube[cubeSize-1-i][cubeSize-1-j] = cube[j][cubeSize-1-i] // 3 replaces 9
+			printCube(cube)
+			cube[j][cubeSize-1-i] = temp // 1 replaces 3
+			printCube(cube)
 		}
 	}
 
