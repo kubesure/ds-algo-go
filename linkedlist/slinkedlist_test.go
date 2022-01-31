@@ -1,7 +1,6 @@
 package linkedlist
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -76,14 +75,9 @@ func TestPrint(t *testing.T) {
 }
 
 func TestIterateForward(t *testing.T) {
-	sll := NewSingleLinkedList(0)
+	sll := NewSingleLinkedList(4)
 	sll.AddFront(1)
 	sll.AddFront(2)
 	sll.AddFront(3)
-	sll.IterateForward(print)
-}
-
-func print(n *Node) bool {
-	fmt.Printf("%v ,", n.Data)
-	return true
+	sll.IterateForward(andPrint)
 }

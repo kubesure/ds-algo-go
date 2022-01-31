@@ -139,3 +139,8 @@ func (sll *SLinkedList) Print() {
 		fmt.Printf("]")
 	}
 }
+
+func andPrint(n *Node) bool {
+	fmt.Printf("%v ,", n.Data)
+	return false
+}
