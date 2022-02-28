@@ -17,7 +17,7 @@ func TestGrades(t *testing.T) {
 		t.Errorf("should have been 67")
 	}
 
-	if grades[3] != 39 {
-		t.Errorf("should have been 39")
+	if grades[3] != 40 {
+		t.Errorf("should have been 40")
 	}
 }
