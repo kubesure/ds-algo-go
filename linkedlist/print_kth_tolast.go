@@ -1,19 +1,21 @@
 package linkedlist
 
-func recurse(head *Node, kth int, index int) *Node {
-	if head == nil {
-		return nil
+func kthFromLast(head *Node, kth int) *Node {
+	p1, p2 := head, head
+	for i := 0; i < kth+1; i++ {
+		p1 = p1.Next
+		if p1.Next == nil {
+			return nil
+		}
 	}
 
-	nd := recurse(head.Next, kth, index)
-	index++
-	if index == kth {
-		return head
+	for p1.Next != nil {
+		p1 = p1.Next
+		p2 = p2.Next
 	}
-	return nd
+	return p2.Next
 }
 
-func kthToLast(node *Node, kth int) *Node {
-	index := 0
-	return recurse(node, kth, index)
-}
+//    1 2 3 4 5
+//p1    _
+//p2  _
