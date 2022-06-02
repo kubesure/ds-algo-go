@@ -5,7 +5,7 @@ func zero_matrix(ar [][]int) [][]int {
 	out:
 		for _, column := range row {
 			if column == 0 {
-				for i, _ := range ar[rnum] {
+				for i := range ar[rnum] {
 					ar[rnum][i] = 0
 				}
 				break out
