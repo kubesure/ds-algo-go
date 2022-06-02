@@ -22,6 +22,11 @@ func NewNullSingleLinkedList() *SLinkedList {
 	return sll
 }
 
+func NewEmptySingleLinkedList() *SLinkedList {
+	var sll *SLinkedList = new(SLinkedList)
+	return sll
+}
+
 //AddFront add element to front of the linkedlist
 func (sll *SLinkedList) AddFront(Data int) *Node {
 	node := &Node{Data: Data}
@@ -30,8 +35,10 @@ func (sll *SLinkedList) AddFront(Data int) *Node {
 		sll.Tail = node
 		sll.size = 1
 	} else {
+		temp := sll.Head
 		node.Next = sll.Head
 		sll.Head = node
+		temp.Prev = node
 		sll.size = sll.size + 1
 	}
 	return node
@@ -89,11 +96,61 @@ func (sll *SLinkedList) AddAt(Data int, at int) *Node {
 	return node
 }
 
+func (sll *SLinkedList) RemoveAt(index int) {
+	node := sll.nodeAt(index)
+	if sll.Head == node {
+		node.Prev = nil
+		sll.Head = node.Next
+	} else if sll.Tail == node {
+		sll.Tail = node.Prev
+		sll.Tail.Next = nil
+	} else {
+		node.Prev.Next = node.Next
+		node.Next.Prev = node.Prev
+	}
+	sll.size--
+}
+
+func (sll *SLinkedList) nodeAt(index int) *Node {
+
+	var i int
+	for node := sll.Head; node != nil; node = node.Next {
+		if i == index {
+			return node
+		}
+		i++
+	}
+	return nil
+}
+
 //Delete deletes the linkedlist
 func (sll *SLinkedList) Delete() {
 	sll.Head.Next = nil
 	sll.Tail = nil
 	sll.size = 0
+}
+
+func (sll *SLinkedList) Partition(x int) *SLinkedList {
+	lower := NewEmptySingleLinkedList()
+	higher := SLinkedList{}
+	var xnode *Node
+
+	for node := sll.Head; node != nil; node = node.Next {
+		if node.Data == x {
+			xnode = node
+		} else if node.Data < x {
+			lower.AddEnd(node.Data)
+		} else {
+			higher.AddEnd(node.Data)
+		}
+	}
+	if xnode != nil {
+		lower.AddEnd(xnode.Data)
+	}
+
+	lower.Tail.Next = higher.Head
+	higher.Head.Prev = lower.Tail
+	return lower
 }
 
 //Size returns the size of linked list

@@ -1,6 +1,7 @@
 package linkedlist
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -64,6 +65,35 @@ func TestAddAt(t *testing.T) {
 	if sll.Length() != 4 {
 		t.Errorf("got %v and wanted 4", sll.Length())
 	}
+}
+
+func TestRemoveTail(t *testing.T) {
+	sll := NewSingleLinkedList(0)
+	sll.AddFront(1)
+	sll.AddFront(2)
+	sll.AddFront(3)
+	sll.IterateForward(andPrint)
+	sll.RemoveAt(3)
+	if sll.size != 3 {
+		t.Errorf("size should be 3 while its %v ", sll.size)
+	}
+	fmt.Println()
+	sll.IterateForward(andPrint)
+
+}
+
+func TestRemoveHead(t *testing.T) {
+	sll := NewSingleLinkedList(0)
+	sll.AddFront(1)
+	sll.AddFront(2)
+	sll.AddFront(3)
+	sll.IterateForward(andPrint)
+	sll.RemoveAt(0)
+	if sll.size != 3 {
+		t.Errorf("size should be 3 while its %v ", sll.size)
+	}
+	fmt.Println()
+	sll.IterateForward(andPrint)
 }
 
 func TestPrint(t *testing.T) {
