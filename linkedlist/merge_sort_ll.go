@@ -1,12 +1,8 @@
-package mergesort
+package linkedlist
 
-import (
-	ll "github.com/kubesure/goalgo/linkedlist"
-)
+func merge_sorted(ll1 *SLinkedList, ll2 *SLinkedList) *SLinkedList {
 
-func merge_sorted(ll1 *ll.SLinkedList, ll2 *ll.SLinkedList) *ll.SLinkedList {
-
-	ml := ll.NewNullSingleLinkedList()
+	ml := NewNullSingleLinkedList()
 
 	if ll1.Head == nil {
 		return ll2

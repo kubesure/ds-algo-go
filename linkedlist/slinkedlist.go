@@ -179,6 +179,43 @@ func (sll *SLinkedList) Nodes() []*Node {
 	return nodes
 }
 
+func sum(ll1, ll2 *SLinkedList) uint {
+	var sum, carry, result uint
+	var multiplyfactor uint = 1
+	resll := NewEmptySingleLinkedList()
+	n1, n2 := ll1.Head, ll2.Head
+	for n1 != nil || n2 != nil {
+		if n1 == nil {
+			sum = uint(n2.Data)
+			sum += carry
+			n2 = n2.Next
+		} else if n2 == nil {
+			sum = uint(n1.Data)
+			sum += carry
+			n1 = n1.Next
+		} else {
+			sum = uint(n1.Data) + uint(n2.Data)
+			sum += carry
+
+			n1 = n1.Next
+			n2 = n2.Next
+		}
+		if sum >= 10 {
+			carry = 1
+		} else {
+			carry = 0
+		}
+		sum = sum % 10
+		resll.AddEnd(int(sum))
+	}
+
+	for node := resll.Head; node != nil; node = node.Next {
+		result += uint(node.Data) * multiplyfactor
+		multiplyfactor *= 10
+	}
+	return result
+}
+
 func (sll *SLinkedList) Print() {
 	currNode := sll.Head
 	if currNode == nil {
