@@ -11,10 +11,10 @@ func merge_sorted(ll1 *SLinkedList, ll2 *SLinkedList) *SLinkedList {
 	}
 
 	if ll1.Head.Data <= ll2.Head.Data {
-		ml.AddFront(ll1.Head.Data)
+		ml.Insert(ll1.Head.Data)
 		ml.AddEnd(ll2.Head.Data)
 	} else if ll1.Head.Data >= ll2.Head.Data {
-		ml.AddFront(ll2.Head.Data)
+		ml.Insert(ll2.Head.Data)
 		ml.AddEnd(ll1.Head.Data)
 	}
 

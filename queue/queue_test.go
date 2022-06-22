@@ -1,6 +1,8 @@
 package queue
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestQueueCreate(t *testing.T) {
 	q := NewQueue()
@@ -9,7 +11,16 @@ func TestQueueCreate(t *testing.T) {
 	q.EnQueue(3)
 	q.EnQueue(4)
 	q.EnQueue(5)
-	//q.Print()
+
 	q.DeQueue()
+	q.DeQueue()
+	q.DeQueue()
+	q.DeQueue()
+	q.DeQueue()
+	val := q.DeQueue()
+
+	if val != nil {
+		t.Errorf("should be nil but got %v", val)
+	}
 	q.Print()
 }

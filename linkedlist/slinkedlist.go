@@ -12,7 +12,7 @@ type SLinkedList struct {
 //NewSingleLinkedList create a new single list
 func NewSingleLinkedList(Data int) *SLinkedList {
 	var sll *SLinkedList = new(SLinkedList)
-	sll.AddFront(Data)
+	sll.Insert(Data)
 	return sll
 }
 
@@ -27,8 +27,8 @@ func NewEmptySingleLinkedList() *SLinkedList {
 	return sll
 }
 
-//AddFront add element to front of the linkedlist
-func (sll *SLinkedList) AddFront(Data int) *Node {
+//Insert add element to front of the linkedlist
+func (sll *SLinkedList) Insert(Data int) *Node {
 	node := &Node{Data: Data}
 	if sll.Head == nil {
 		sll.Head = node
@@ -47,7 +47,7 @@ func (sll *SLinkedList) AddFront(Data int) *Node {
 //AddEnd adding at the front of linkelist
 func (sll *SLinkedList) AddEnd(Data int) *Node {
 	if sll.Head == nil {
-		return sll.AddFront(Data)
+		return sll.Insert(Data)
 	} else if sll.size == 1 {
 		node := &Node{Data: Data}
 		sll.Head.Next = node

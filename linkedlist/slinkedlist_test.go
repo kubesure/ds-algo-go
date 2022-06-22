@@ -17,12 +17,12 @@ func TestAddFront(t *testing.T) {
 	if sll.Length() != 1 {
 		t.Errorf("got %v and wanted 1", sll.Length())
 	}
-	sll.AddFront(2)
+	sll.Insert(2)
 	if sll.Length() != 2 {
 		t.Errorf("got %v and wanted 2", sll.Length())
 	}
 
-	sll.AddFront(3)
+	sll.Insert(3)
 	if sll.Length() != 3 {
 		t.Errorf("got %v and wanted 3", sll.Length())
 	}
@@ -69,9 +69,9 @@ func TestAddAt(t *testing.T) {
 
 func TestRemoveTail(t *testing.T) {
 	sll := NewSingleLinkedList(0)
-	sll.AddFront(1)
-	sll.AddFront(2)
-	sll.AddFront(3)
+	sll.Insert(1)
+	sll.Insert(2)
+	sll.Insert(3)
 	sll.IterateForward(andPrint)
 	sll.RemoveAt(3)
 	if sll.size != 3 {
@@ -84,9 +84,9 @@ func TestRemoveTail(t *testing.T) {
 
 func TestRemoveHead(t *testing.T) {
 	sll := NewSingleLinkedList(0)
-	sll.AddFront(1)
-	sll.AddFront(2)
-	sll.AddFront(3)
+	sll.Insert(1)
+	sll.Insert(2)
+	sll.Insert(3)
 	sll.IterateForward(andPrint)
 	sll.RemoveAt(0)
 	if sll.size != 3 {
@@ -98,16 +98,16 @@ func TestRemoveHead(t *testing.T) {
 
 func TestPrint(t *testing.T) {
 	sll := NewSingleLinkedList(0)
-	sll.AddFront(1)
-	sll.AddFront(2)
-	sll.AddFront(3)
+	sll.Insert(1)
+	sll.Insert(2)
+	sll.Insert(3)
 	sll.Print()
 }
 
 func TestIterateForward(t *testing.T) {
 	sll := NewSingleLinkedList(4)
-	sll.AddFront(1)
-	sll.AddFront(2)
-	sll.AddFront(3)
+	sll.Insert(1)
+	sll.Insert(2)
+	sll.Insert(3)
 	sll.IterateForward(andPrint)
 }

@@ -26,8 +26,8 @@ func (q *Queue) DeQueue() *Element {
 	if q.size <= 0 {
 		return nil
 	}
-	e := q.elements[0]
-	q.elements = q.elements[1:]
+	e := q.elements[q.size-1]
+	q.elements = q.elements[0 : q.size-1]
 	q.size--
 	return &e
 }

@@ -6,10 +6,10 @@ import (
 
 func TestPrintKthFromLast(t *testing.T) {
 	ll := NewSingleLinkedList(5)
-	ll.AddFront(4)
-	ll.AddFront(3)
-	ll.AddFront(2)
-	ll.AddFront(1)
+	ll.Insert(4)
+	ll.Insert(3)
+	ll.Insert(2)
+	ll.Insert(1)
 
 	n := kthFromLast(ll.Head, 2)
 
