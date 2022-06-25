@@ -16,3 +16,10 @@ type Queue struct {
 type Element struct {
 	value int
 }
+
+type MultiStack struct {
+	elements   []*Element
+	sizes      []int
+	sizeOfEach int
+	numStacks  int
+}
