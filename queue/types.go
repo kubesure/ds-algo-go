@@ -6,6 +6,11 @@ type Stack struct {
 	size     int
 }
 
+type MinStack struct {
+	stack    *Stack
+	minstack *Stack
+}
+
 //Stack represent a stack
 type Queue struct {
 	elements []Element
