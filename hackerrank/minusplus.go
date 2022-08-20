@@ -5,12 +5,12 @@ import (
 	"strconv"
 )
 
-func plusMinus(ar []int32) {
+func plusMinus(arr []int32) {
 	var countPositive float64
 	var countNegative float64
 	var countZero float64
 
-	for _, v := range ar {
+	for _, v := range arr {
 		if v < 0 {
 			countNegative++
 		} else if v > 0 {
@@ -20,7 +20,7 @@ func plusMinus(ar []int32) {
 		}
 	}
 
-	length := float64(len(ar))
+	length := float64(len(arr))
 	fmt.Println(strconv.FormatFloat((countPositive / length), 'f', 6, 64))
 	fmt.Println(strconv.FormatFloat((countNegative / length), 'f', 6, 64))
 	fmt.Println(strconv.FormatFloat((countZero / length), 'f', 6, 64))
