@@ -24,10 +24,11 @@ type MultiStack struct {
 }
 
 type StackOfStack struct {
-	stacks    []*Stack
-	sizeof    []int
-	stackMax  int
-	currStack int
+	stacks     []*Stack
+	sizeof     []int
+	currStack  int
+	capacity   int
+	sizeOfEach int
 }
 
 //Stack represent a stack
