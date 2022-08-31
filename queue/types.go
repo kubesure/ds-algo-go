@@ -41,3 +41,8 @@ type QueueStack struct {
 	new *Stack
 	old *Stack
 }
+
+type SortedStack struct {
+	sorted *Stack
+	temp   *Stack
+}

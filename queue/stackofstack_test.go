@@ -38,21 +38,21 @@ func TestSOSPop(t *testing.T) {
 	sos.Push(3)
 	e, err := sos.Pop()
 	if err != nil {
-		t.Errorf("should not have received an error")
+		t.Errorf("should not have received an error popping 3")
 	} else if err == nil && e.value != 3 {
 		t.Errorf("should have poped 3")
 	}
 
 	e, err = sos.Pop()
 	if err != nil {
-		t.Errorf("should not have received an error")
+		t.Errorf("should not have received an error popping 2")
 	} else if err == nil && e.value != 2 {
 		t.Errorf("should have poped 2")
 	}
 
 	e, err = sos.Pop()
 	if err != nil {
-		t.Errorf("should not have received an error")
+		t.Errorf("should not have received an error popping 1")
 	} else if err == nil && e.value != 1 {
 		t.Errorf("should have poped 1")
 	}

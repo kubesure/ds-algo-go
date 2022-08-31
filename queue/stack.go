@@ -26,8 +26,9 @@ func (s *Stack) Pop() *Element {
 		return nil
 	}
 
-	e := s.elements[s.size-1]
-	s.elements = s.elements[:s.size-1]
+	index := s.size - 1
+	e := s.elements[index]
+	s.elements = s.elements[:index]
 	s.size--
 	return &e
 }

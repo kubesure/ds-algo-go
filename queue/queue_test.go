@@ -22,5 +22,4 @@ func TestQueueCreate(t *testing.T) {
 	if val != nil {
 		t.Errorf("should be nil but got %v", val)
 	}
-	q.Print()
 }

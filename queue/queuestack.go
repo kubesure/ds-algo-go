@@ -29,7 +29,7 @@ func (q *QueueStack) Peek() (*Element, error) {
 		q.copyNewToOld()
 		return q.old.Peek(), nil
 	}
-	return q.old.Pop(), nil
+	return q.old.Peek(), nil
 }
 
 func (q *QueueStack) copyNewToOld() {
