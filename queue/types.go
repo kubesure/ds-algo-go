@@ -36,3 +36,8 @@ type Queue struct {
 	elements []Element
 	size     int
 }
+
+type QueueStack struct {
+	new *Stack
+	old *Stack
+}
