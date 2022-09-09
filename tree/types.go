@@ -10,5 +10,6 @@ const (
 type Node struct {
 	value       int
 	left, right *Node
-	nodeState   state
 }
+
+type path []int

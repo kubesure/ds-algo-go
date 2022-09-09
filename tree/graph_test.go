@@ -1,12 +1,34 @@
 package tree
 
 import (
-	"container/list"
-	"strconv"
+	"fmt"
 	"testing"
 )
 
 func TestFindPath(t *testing.T) {
+	root := graph()
+
+	path := &path{}
+
+	result := find(9, root, path)
+
+	if result != true {
+		t.Errorf("should have found path to 9")
+	}
+
+	if len(*path) != 3 {
+		t.Errorf("depth should have been 3")
+	}
+
+	for k, v := range *path {
+		fmt.Print(v)
+		if k != len(*path)-1 {
+			fmt.Printf("->")
+		}
+	}
+}
+
+func graph() *Node {
 	root := &Node{value: 5}
 	root.left = &Node{value: 3}
 	root.right = &Node{value: 7}
@@ -16,25 +38,5 @@ func TestFindPath(t *testing.T) {
 
 	root.right.left = &Node{value: 10}
 	root.right.right = &Node{value: 9}
-
-	path := &list.List{}
-
-	result := find(9, root, path)
-
-	if result != true {
-		t.Errorf("should have found path to 9")
-	}
-
-	var pathstr string
-
-	for {
-		if path.Len() > 0 {
-			e := path.Front()
-			pathstr = pathstr + strconv.Itoa(e.Value.(int))
-			path.Remove(e)
-		} else {
-			break
-		}
-	}
-
+	return root
 }

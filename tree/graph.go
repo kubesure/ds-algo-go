@@ -1,16 +1,12 @@
 package tree
 
-import (
-	"container/list"
-)
-
-func find(x int, node *Node, path *list.List) bool {
+func find(x int, node *Node, path *path) bool {
 
 	if node == nil {
 		return false
 	}
 
-	path.PushBack(node.value)
+	path.appendPath(node.value)
 
 	if node.value == x {
 		return true
@@ -19,16 +15,15 @@ func find(x int, node *Node, path *list.List) bool {
 	if find(x, node.left, path) || find(x, node.right, path) {
 		return true
 	}
-	remmovePaths(path)
+
+	remmoveLast(path)
 	return false
 }
 
-func remmovePaths(path *list.List) {
-	for {
-		if path.Len() > 0 {
-			path.Remove(path.Front())
-		} else {
-			break
-		}
-	}
+func (p *path) appendPath(v int) {
+	*p = append(*p, v)
+}
+
+func remmoveLast(path *path) {
+	*path = (*path)[:len(*path)-1]
 }
