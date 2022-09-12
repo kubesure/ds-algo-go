@@ -8,8 +8,13 @@ const (
 )
 
 type Node struct {
-	value       int
-	left, right *Node
+	value int
+	left  *Node
+	right *Node
 }
 
 type path []int
+
+type btree struct {
+	root *Node
+}
