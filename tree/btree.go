@@ -4,9 +4,27 @@ import (
 	"fmt"
 )
 
-func minBTree(e []int) *Node {
+func minBTree(arr []int) *Node {
+	if len(arr) == 0 {
+		return nil
+	}
 
-	return nil
+	return convertToBTree(arr)
+}
+
+func convertToBTree(arr []int) *Node {
+
+	if len(arr) == 0 {
+		return nil
+	}
+
+	mid := len(arr) / 2
+	left := arr[:mid]
+	right := arr[mid+1:]
+	root := &Node{value: arr[mid]}
+	root.left = convertToBTree(left)
+	root.right = convertToBTree(right)
+	return root
 }
 
 func (t *btree) insert(value int) *Node {
