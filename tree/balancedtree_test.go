@@ -20,16 +20,14 @@ func TestIsBalancedTree(t *testing.T) {
 func TestIsNotBalancedTree(t *testing.T) {
 	tr := unBalancedTree()
 	if isBalanceTree(tr) != false {
-		t.Errorf("This is not a balanced tree")
+		t.Errorf("This should have been a balanced tree")
 	}
 }
 
 func unBalancedTree() *Node {
 	root := &Node{value: 7}
 	root.left = &Node{value: 3}
-	root.left.left = &Node{value: 1}
 	root.left.left = &Node{value: 5}
-	root.left.left.left = &Node{value: 4}
 	root.left.left.left = &Node{value: 6}
 	return root
 }

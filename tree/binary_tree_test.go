@@ -10,7 +10,7 @@ import (
 
 func TestIsBinaryTree(t *testing.T) {
 	tr := tree.New(1)
-	isBinary := isBST(tr, math.MinInt32, math.MaxInt32, "root")
+	isBinary := isBST(tr, math.MaxInt, math.MinInt, "root")
 	fmt.Printf(" is binary tree %v \n", isBinary)
 }
 

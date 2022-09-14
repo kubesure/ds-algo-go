@@ -8,7 +8,6 @@ func minBTree(arr []int) *Node {
 	if len(arr) == 0 {
 		return nil
 	}
-
 	return convertToBTree(arr)
 }
 
