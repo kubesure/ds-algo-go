@@ -1,18 +1,10 @@
 package tree
 
 import (
-	"fmt"
-	"math"
 	"testing"
 
 	"golang.org/x/tour/tree"
 )
-
-func TestIsBinaryTree(t *testing.T) {
-	tr := tree.New(1)
-	isBinary := isBST(tr, math.MaxInt, math.MinInt, "root")
-	fmt.Printf(" is binary tree %v \n", isBinary)
-}
 
 func TestLevelOrderTravesal(t *testing.T) {
 	tr := tree.New(5)

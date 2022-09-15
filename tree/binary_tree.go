@@ -7,22 +7,6 @@ import (
 	"golang.org/x/tour/tree"
 )
 
-func isBST(root *tree.Tree, min int, max int, side string) bool {
-	if root == nil || root.Value == 0 {
-		return true
-
-	}
-
-	fmt.Printf("side %v value %v - min - %v max %v \n ", side, root.Value, min, max)
-
-	if root.Value < min || root.Value > max {
-		return false
-	}
-
-	return isBST(root.Left, min, root.Value, "left") &&
-		isBST(root.Right, root.Value, max, "right")
-}
-
 func pre_order_bt(t *tree.Tree) {
 	if t == nil || t.Value == 0 {
 		return
