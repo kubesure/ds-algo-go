@@ -46,6 +46,16 @@ func (n *Node) insert(node *Node, value int) *Node {
 	return node
 }
 
+func inOrderTraversal(root *Node) {
+	if root == nil {
+		return
+	}
+
+	inOrderTraversal(root.left)
+	fmt.Printf("%v>", root.value)
+	inOrderTraversal(root.right)
+}
+
 func print(node *Node, indent int, ch rune) {
 	if node == nil {
 		return

@@ -9,7 +9,7 @@ func inOrderSuccessor(root *Node, data int) *Node {
 	}
 
 	if targetNode.right != nil {
-		return findLeftMost(targetNode)
+		return findLeftMost(targetNode.right)
 	} else {
 		ancestor := root
 		for {
@@ -52,10 +52,11 @@ func findLeftMost(n *Node) *Node {
 	}
 
 	for {
-		if n == nil {
+		if n.left != nil {
+			n = n.left
+		} else {
 			break
 		}
-		n = n.left
 	}
 	return n
 }

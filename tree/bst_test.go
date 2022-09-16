@@ -4,7 +4,14 @@ import (
 	"testing"
 )
 
-func TestIsBST(t *testing.T) {
+func TestIsBST1(t *testing.T) {
+	bst := isBinarySearchTree(bsTree1())
+	if !bst {
+		t.Errorf("Should be a BST")
+	}
+}
+
+func TestIsBST2(t *testing.T) {
 	bst := isBinarySearchTree(bsTree2())
 	if !bst {
 		t.Errorf("Should be a BST")

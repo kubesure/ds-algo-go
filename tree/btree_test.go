@@ -21,3 +21,26 @@ func TestCreateMinBTreeArr(t *testing.T) {
 	btr := minBTree(ar)
 	print(btr, 0, 'M')
 }
+
+func minBT() *Node {
+	ar := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 18, 20, 23, 34}
+	btr := minBTree(ar)
+	return btr
+}
+
+func TestInOrderBST(t *testing.T) {
+	inOrderTraversal(btree4())
+}
+
+func btree4() *Node {
+	tr := btree{}
+	tr.insert(20)
+	tr.insert(8)
+	tr.insert(4)
+	tr.insert(12)
+	tr.insert(10)
+	tr.insert(14)
+	tr.insert(22)
+	//inOrderTraversal(tr.root)
+	return tr.root
+}
