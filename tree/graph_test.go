@@ -1,42 +1,29 @@
 package tree
 
-import (
-	"fmt"
-	"testing"
-)
+import "testing"
 
-func TestFindPath(t *testing.T) {
-	root := graph()
+func TestBuildGraph(t *testing.T) {
+	g := NewGraph()
 
-	path := &path{}
+	a := &GNode{data: "A"}
+	b := &GNode{data: "B"}
+	c := &GNode{data: "C"}
+	d := &GNode{data: "D"}
+	e := &GNode{data: "E"}
+	f := &GNode{data: "F"}
+	h := &GNode{data: "H"}
 
-	result := find(9, root, path)
+	g.addNode(a)
+	g.addNode(b)
+	g.addNode(c)
+	g.addNode(d)
+	g.addNode(e)
+	g.addNode(f)
+	g.addNode(h)
 
-	if result != true {
-		t.Errorf("should have found path to 9")
-	}
+	g.addEdges(a, c)
+	g.addEdges(c, d, f)
 
-	if len(*path) != 3 {
-		t.Errorf("depth should have been 3")
-	}
+	g.print()
 
-	for k, v := range *path {
-		fmt.Print(v)
-		if k != len(*path)-1 {
-			fmt.Printf("->")
-		}
-	}
-}
-
-func graph() *Node {
-	root := &Node{value: 5}
-	root.left = &Node{value: 3}
-	root.right = &Node{value: 7}
-
-	root.left.left = &Node{value: 6}
-	root.left.right = &Node{value: 8}
-
-	root.right.left = &Node{value: 10}
-	root.right.right = &Node{value: 9}
-	return root
 }
