@@ -13,17 +13,18 @@ type Node struct {
 	right *Node
 }
 
-type GNode struct {
-	data string
-}
-
 type path []int
 
 type btree struct {
 	root *Node
 }
 
+type Vertex struct {
+	key      string
+	adjacent []*Vertex
+	state    state
+}
+
 type graph struct {
-	nodes []*GNode
-	edges map[*GNode][]*GNode
+	vertices []*Vertex
 }

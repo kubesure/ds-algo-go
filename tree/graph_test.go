@@ -1,29 +1,42 @@
 package tree
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestBuildGraph(t *testing.T) {
 	g := NewGraph()
 
-	a := &GNode{data: "A"}
-	b := &GNode{data: "B"}
-	c := &GNode{data: "C"}
-	d := &GNode{data: "D"}
-	e := &GNode{data: "E"}
-	f := &GNode{data: "F"}
-	h := &GNode{data: "H"}
+	a := &Vertex{key: "A"}
+	b := &Vertex{key: "B"}
+	c := &Vertex{key: "C"}
+	d := &Vertex{key: "D"}
+	e := &Vertex{key: "E"}
+	f := &Vertex{key: "F"}
+	h := &Vertex{key: "H"}
 
-	g.addNode(a)
-	g.addNode(b)
-	g.addNode(c)
-	g.addNode(d)
-	g.addNode(e)
-	g.addNode(f)
-	g.addNode(h)
+	g.addVertex(e)
+	g.addVertex(f)
+	g.addVertex(h)
+	g.addVertex(a)
+	g.addVertex(b)
+	g.addVertex(c)
+	g.addVertex(d)
 
-	g.addEdges(a, c)
-	g.addEdges(c, d, f)
+	g.addAdjacent(a, c, h)
+	g.addAdjacent(c, d, f)
 
 	g.print()
+
+	o := buildOrder(g)
+
+	for _, v := range o {
+		fmt.Printf("%v ", v)
+	}
+
+	if len(o) != 7 {
+		t.Errorf("order should have 7 tasks")
+	}
 
 }
