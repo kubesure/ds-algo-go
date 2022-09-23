@@ -94,7 +94,20 @@ func TestInOrderTree5(t *testing.T) {
 
 	if s == nil {
 		t.Errorf("inorder sucessor of 8 should not be nil")
-	} else if s.value != 8 {
+	} else if s.value != 10 {
 		t.Errorf("inorder sucessor of 8 should be 10 and not %v", s.value)
 	}
+}
+
+func btree4() *Node {
+	tr := btree{}
+	tr.insert(20)
+	tr.insert(8)
+	tr.insert(4)
+	tr.insert(12)
+	tr.insert(10)
+	tr.insert(14)
+	tr.insert(22)
+	//inOrderTraversal(tr.root)
+	return tr.root
 }
