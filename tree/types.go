@@ -20,8 +20,9 @@ type btree struct {
 }
 
 type Vertex struct {
-	key      string
-	adjacent []*Vertex
+	key string
+	//adjacent []*Vertex
+	adjacent map[string]*Vertex
 	state    state
 }
 
