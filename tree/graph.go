@@ -15,23 +15,35 @@ func (g *graph) addVertex(v *Vertex) error {
 
 func (g *graph) addAdjacent(v *Vertex, adjacent ...*Vertex) error {
 	if v.adjacent == nil {
-		v.adjacent = make([]*Vertex, 0)
+		v.adjacent = make(map[string]*Vertex, 0)
 	}
-	v.adjacent = append(v.adjacent, adjacent...)
-	return nil
-}
-
-func doDFS(n *Vertex, order *list.List) {
-
-	for _, edge := range n.adjacent {
-		if len(n.adjacent) > 0 {
-			doDFS(edge, order)
+	for _, a := range adjacent {
+		if _, ok := v.adjacent[a.key]; !ok {
+			v.adjacent[a.key] = a
+		} else {
+			return fmt.Errorf("Vertex %v existing in graph", a.key)
 		}
 	}
 
-	if n.state != VISITED {
-		n.state = VISITED
-		order.PushBack(n.key)
+	return nil
+}
+
+func doDFS(v *Vertex, order *list.List) {
+
+	if v.state == VISITED {
+		return
+	}
+
+	for _, a := range v.adjacent {
+		if len(v.adjacent) > 0 {
+			doDFS(a, order)
+		}
+	}
+
+	if v.state != VISITED {
+		v.state = VISITED
+		order.PushBack(v.key)
+		visit(v)
 	}
 }
 
@@ -71,5 +83,5 @@ func (g *graph) print() {
 }
 
 func visit(n *Vertex) {
-	fmt.Println(n.key)
+	fmt.Printf("%v ", n.key)
 }
