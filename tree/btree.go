@@ -262,3 +262,40 @@ func (p *path) appendPath(v int) {
 func remmoveLast(path *path) {
 	*path = (*path)[:len(*path)-1]
 }
+
+//t2 a sub tree of t1
+func isSubTreeOf(t1, t2 *Node) bool {
+	if t1 == nil || t2 == nil {
+		return false
+	}
+	return checkSubTree(t1, t2)
+}
+
+func checkSubTree(t1, t2 *Node) bool {
+	if t1 == nil {
+		return false
+	}
+
+	if t1.value == t2.value && matchAll(t1, t2) {
+		return true
+	}
+
+	cl := checkSubTree(t1.left, t2)
+	cr := checkSubTree(t1.right, t2)
+
+	return cl || cr
+}
+
+func matchAll(t1, t2 *Node) bool {
+	if t1 == nil && t2 == nil {
+		return true
+	} else if t1 == nil || t2 == nil {
+		return false
+	} else if t1.value != t2.value {
+		return false
+	} else {
+		ml := matchAll(t1.left, t2.left)
+		mr := matchAll(t1.right, t2.right)
+		return ml && mr
+	}
+}
