@@ -8,15 +8,15 @@ const (
 )
 
 type Node struct {
-	value int
-	left  *Node
-	right *Node
+	value, index, size  int
+	parent, left, right *Node
 }
 
 type path []int
 
 type btree struct {
 	root *Node
+	size int32
 }
 
 type Vertex struct {

@@ -30,6 +30,15 @@ func bsTree1() *Node {
 	return root
 }
 
+func bsTree3() *Node {
+	root := &Node{value: 4}
+	root.left = root.insertNode(2)
+	root.left.insertNode(1)
+	root.left.insertNode(3)
+	root.right = root.insertNode(5)
+	return root
+}
+
 func bsTree2() *Node {
 	root := &Node{value: 3}
 

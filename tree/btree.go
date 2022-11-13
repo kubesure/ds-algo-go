@@ -1,9 +1,10 @@
 package tree
 
 import (
-	"container/list"
 	"fmt"
 	"math"
+	"math/rand"
+	"time"
 )
 
 func inOrderSuccessor(root *Node, data int) *Node {
@@ -60,21 +61,75 @@ func convertToBTree(arr []int) *Node {
 func (t *btree) insert(value int) *Node {
 	if t.root == nil {
 		t.root = &Node{value: value}
+		t.size++
 		return t.root
 	} else {
+		t.size++
 		return t.root.insert(t.root, value)
 	}
 }
 
 func (n *Node) insert(node *Node, value int) *Node {
 	if node == nil {
-		return &Node{value: value}
+		return &Node{value: value, parent: n, size: 1}
 	} else if value <= node.value {
 		node.left = n.insert(node.left, value)
 	} else if value > node.value {
 		node.right = n.insert(node.right, value)
 	}
 	return node
+}
+
+func (n *Node) insertNode(value int) *Node {
+	var newnode *Node
+	if value <= n.value {
+		n.left = n.insert(n.left, value)
+		newnode = n.left
+	} else if value > n.value {
+		n.right = n.insert(n.right, value)
+		newnode = n.right
+	}
+	n.size++
+	newnode.index = n.size + n.index
+	return newnode
+}
+
+func randomNode(n *Node) *Node {
+	s := sizeOf(n)
+	rand.Seed(time.Now().UnixNano())
+	r := rand.Intn(s)
+	return findIthNode(n, r)
+}
+
+func findIthNode(n *Node, index int) *Node {
+	if n == nil {
+		return nil
+	}
+
+	c := n.index + 1
+	if c == index {
+		return n
+	}
+	rn := findIthNode(n.left, index)
+	if rn != nil {
+		return rn
+	}
+	rn = findIthNode(n.right, index)
+	if rn != nil {
+		return rn
+	}
+	return nil
+}
+
+func sizeOf(n *Node) int {
+	if n == nil {
+		return 0
+	}
+
+	sl := sizeOf(n.left)
+	sr := sizeOf(n.right)
+	size := sl + sr + 1
+	return size
 }
 
 func inOrder(root *Node) {
@@ -87,47 +142,6 @@ func inOrder(root *Node) {
 	inOrder(root.right)
 }
 
-func preOrder(root *Node) {
-	if root == nil {
-		return
-	}
-	fmt.Printf("%v>", root.value)
-	preOrder(root.left)
-	preOrder(root.right)
-}
-
-func postOrder(root *Node) {
-	if root == nil {
-		return
-	}
-	postOrder(root.left)
-	postOrder(root.right)
-	fmt.Printf("%v>", root.value)
-}
-
-func levelOrder(root *Node) {
-	queue := list.New()
-	queue.PushBack(root)
-	for {
-		if queue.Len() > 0 {
-			f := queue.Front()
-			currNode := f.Value.(*Node)
-			fmt.Printf("%v ", currNode.value)
-			queue.Remove(f)
-
-			if currNode.left != nil {
-				queue.PushBack(currNode.left)
-			}
-
-			if currNode.right != nil {
-				queue.PushBack(currNode.right)
-			}
-		} else {
-			break
-		}
-	}
-}
-
 func print(node *Node, indent int, ch rune) {
 	if node == nil {
 		return
@@ -137,7 +151,7 @@ func print(node *Node, indent int, ch rune) {
 		fmt.Print(" ")
 	}
 
-	fmt.Printf("%c:%v\n", ch, node.value)
+	fmt.Printf("%c:%v - %v\n", ch, node.value, node.size)
 	print(node.left, indent+2, 'L')
 	print(node.right, indent+2, 'R')
 }
