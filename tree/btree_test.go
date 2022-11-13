@@ -6,14 +6,7 @@ import (
 )
 
 func TestCreateBTree(t *testing.T) {
-	bt := btree{}
-	bt.insert(4)
-	bt.insert(5)
-	bt.insert(7)
-	bt.insert(-1)
-	bt.insert(-1)
-	bt.insert(5)
-	bt.insert(4)
+	bt := aBtree()
 	print(bt.root, 0, 'M')
 }
 
@@ -27,30 +20,6 @@ func minBT() *Node {
 	ar := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 18, 20, 23, 34}
 	btr := minBTree(ar)
 	return btr
-}
-
-func TestInOrderBST(t *testing.T) {
-	ar := []int{2, 4, 5, 6, 8, 10, 12, 14, 18, 20, 23, 34}
-	btr := minBTree(ar)
-	inOrder(btr)
-}
-
-func TestPreOrderBST(t *testing.T) {
-	ar := []int{2, 4, 5, 6, 8, 10, 12, 14, 18, 20, 23, 34}
-	btr := minBTree(ar)
-	preOrder(btr)
-}
-
-func TestPostOrderBST(t *testing.T) {
-	ar := []int{2, 4, 5, 6, 8, 10, 12, 14, 18, 20, 23, 34}
-	btr := minBTree(ar)
-	postOrder(btr)
-}
-
-func TestLevelOrderBST(t *testing.T) {
-	ar := []int{2, 4, 5, 6, 8, 10, 12, 14, 18, 20, 23, 34}
-	btr := minBTree(ar)
-	levelOrder(btr)
 }
 
 func TestFindPath(t *testing.T) {
@@ -87,4 +56,17 @@ func aTree() *Node {
 	root.right.left = &Node{value: 10}
 	root.right.right = &Node{value: 9}
 	return root
+}
+
+func aBtree() *btree {
+
+	bt := btree{}
+	bt.insert(4)
+	bt.insert(5)
+	bt.insert(7)
+	bt.insert(-1)
+	bt.insert(-1)
+	bt.insert(5)
+	bt.insert(4)
+	return &bt
 }
