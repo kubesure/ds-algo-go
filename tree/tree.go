@@ -5,6 +5,30 @@ import (
 	"fmt"
 )
 
+func print(node *Node, indent int, ch rune) {
+	if node == nil {
+		return
+	}
+
+	for i := 0; i < indent; i++ {
+		fmt.Print(" ")
+	}
+
+	fmt.Printf("%c:%v  %v \n", ch, node.value, node.index)
+	print(node.left, indent+2, 'L')
+	print(node.right, indent+2, 'R')
+}
+
+func inOrder(root *Node) {
+	if root == nil {
+		return
+	}
+
+	inOrder(root.left)
+	fmt.Printf("%v>", root.value)
+	inOrder(root.right)
+}
+
 func preOrder(root *Node) {
 	if root == nil {
 		return

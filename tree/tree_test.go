@@ -27,3 +27,17 @@ func TestLevelOrderBST(t *testing.T) {
 	btr := minBTree(ar)
 	levelOrder(btr)
 }
+
+func TestFindDepth(t *testing.T) {
+	s := sizeOf(bsTree1())
+	if s != 5 {
+		t.Errorf("Size should be 5 and not %v", s)
+	}
+}
+
+func TestFindDepthSubTree(t *testing.T) {
+	s := sizeOf(bsTree1().left)
+	if s != 3 {
+		t.Errorf("Size should be 3 and not %v", s)
+	}
+}

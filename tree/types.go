@@ -13,6 +13,7 @@ type Node struct {
 }
 
 type path []int
+type elements []int
 
 type btree struct {
 	root *Node

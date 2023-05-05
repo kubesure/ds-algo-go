@@ -1,11 +1,110 @@
 package tree
 
 import (
-	"fmt"
 	"math"
 	"math/rand"
 	"time"
 )
+
+func (t *btree) insert(value int) *Node {
+	if t.root == nil {
+		t.root = &Node{value: value}
+		t.size++
+		return t.root
+	} else {
+		t.size++
+		return t.root.insert(t.root, value)
+	}
+}
+
+func (n *Node) insert(node *Node, value int) *Node {
+	if node == nil {
+		return &Node{value: value, parent: n, size: 1}
+	} else if value <= node.value {
+		node.left = n.insert(node.left, value)
+	} else if value > node.value {
+		node.right = n.insert(node.right, value)
+	}
+	return node
+}
+
+func (n *Node) insertBSTNode(value int) *Node {
+	var newnode *Node
+	if value <= n.value {
+		n.left = n.insert(n.left, value)
+		newnode = n.left
+	} else if value > n.value {
+		n.right = n.insert(n.right, value)
+		newnode = n.right
+	}
+	n.size++
+	newnode.index = n.size + n.index
+	return newnode
+}
+
+func (n *Node) insertBTNode(value int, side rune) *Node {
+	var newnode *Node
+	if side == 'L' {
+		n.left = n.insert(n.left, value)
+		newnode = n.left
+	} else if side == 'R' {
+		n.right = n.insert(n.right, value)
+		newnode = n.right
+	}
+	n.size++
+	newnode.index = n.size + n.index
+	return newnode
+}
+
+func findIthNode(n *Node, index int) *Node {
+	if n == nil {
+		return nil
+	}
+
+	c := n.index + 1
+	if c == index {
+		return n
+	}
+	rn := findIthNode(n.left, index)
+	if rn != nil {
+		return rn
+	}
+	rn = findIthNode(n.right, index)
+	if rn != nil {
+		return rn
+	}
+	return nil
+}
+
+func sizeOf(n *Node) int {
+	if n == nil {
+		return 0
+	}
+
+	sl := sizeOf(n.left)
+	sr := sizeOf(n.right)
+	size := sl + sr + 1
+	return size
+}
+
+func toArray(n *Node) []int {
+	e := make(elements, 0)
+	convertArray(n, &e)
+	return e
+}
+
+func convertArray(n *Node, e *elements) {
+	if n == nil {
+		return
+	}
+	e.appendElements(n.value)
+	convertArray(n.left, e)
+	convertArray(n.right, e)
+}
+
+func (e *elements) appendElements(v int) {
+	*e = append(*e, v)
+}
 
 func inOrderSuccessor(root *Node, data int) *Node {
 	var successor *Node
@@ -58,102 +157,11 @@ func convertToBTree(arr []int) *Node {
 	return root
 }
 
-func (t *btree) insert(value int) *Node {
-	if t.root == nil {
-		t.root = &Node{value: value}
-		t.size++
-		return t.root
-	} else {
-		t.size++
-		return t.root.insert(t.root, value)
-	}
-}
-
-func (n *Node) insert(node *Node, value int) *Node {
-	if node == nil {
-		return &Node{value: value, parent: n, size: 1}
-	} else if value <= node.value {
-		node.left = n.insert(node.left, value)
-	} else if value > node.value {
-		node.right = n.insert(node.right, value)
-	}
-	return node
-}
-
-func (n *Node) insertNode(value int) *Node {
-	var newnode *Node
-	if value <= n.value {
-		n.left = n.insert(n.left, value)
-		newnode = n.left
-	} else if value > n.value {
-		n.right = n.insert(n.right, value)
-		newnode = n.right
-	}
-	n.size++
-	newnode.index = n.size + n.index
-	return newnode
-}
-
 func randomNode(n *Node) *Node {
 	s := sizeOf(n)
 	rand.Seed(time.Now().UnixNano())
 	r := rand.Intn(s)
 	return findIthNode(n, r)
-}
-
-func findIthNode(n *Node, index int) *Node {
-	if n == nil {
-		return nil
-	}
-
-	c := n.index + 1
-	if c == index {
-		return n
-	}
-	rn := findIthNode(n.left, index)
-	if rn != nil {
-		return rn
-	}
-	rn = findIthNode(n.right, index)
-	if rn != nil {
-		return rn
-	}
-	return nil
-}
-
-func sizeOf(n *Node) int {
-	if n == nil {
-		return 0
-	}
-
-	sl := sizeOf(n.left)
-	sr := sizeOf(n.right)
-	size := sl + sr + 1
-	return size
-}
-
-func inOrder(root *Node) {
-	if root == nil {
-		return
-	}
-
-	inOrder(root.left)
-	fmt.Printf("%v>", root.value)
-	inOrder(root.right)
-}
-
-func print(node *Node, indent int, ch rune) {
-	if node == nil {
-		return
-	}
-
-	for i := 0; i < indent; i++ {
-		fmt.Print(" ")
-	}
-
-	fmt.Printf("%c:%v - %v\n", ch, node.value, node.size)
-	print(node.left, indent+2, 'L')
-	print(node.right, indent+2, 'R')
 }
 
 func isBinarySearchTree(node *Node) bool {
